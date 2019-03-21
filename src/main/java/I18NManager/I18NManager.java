@@ -1,6 +1,7 @@
 package I18NManager;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class I18NManager {
@@ -10,7 +11,7 @@ public class I18NManager {
     private static I18NManager instance;
 
     private I18NManager(){
-        this.data= new HashMap<String, ResourceBundle>();
+        this.data= new HashMap<>();
     }
 
     public static I18NManager getInstance(){
@@ -22,7 +23,8 @@ public class I18NManager {
         ResourceBundle rs = data.get(idioma);
         if(rs==null)
         {
-            rs = ResourceBundle.getBundle("I18NManager."+idioma);
+            Locale l = new Locale(idioma);
+            rs = ResourceBundle.getBundle("bundle",l);
             data.put(idioma,rs);
         }
 
